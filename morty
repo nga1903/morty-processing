@@ -1,27 +1,44 @@
 void setup(){
   size(500, 500);
   background(255);
+  frameRate(3);
 }
 
 void draw(){
+  
+  
   fill(230,189,160);
   strokeWeight(2);
   ellipse(220,200,250,250);
-  fill(255);
-  ellipse(325,200,75,80);
-  ellipse(200,200,80,80);
-  fill(0);
-  ellipse(345,220,4,4);
-  ellipse(215,220,4,4);
+  
   noFill();
-  draweyes();
+  
+  if(random(2) >= 1){
+    drawlefteyeopen();
+    
+  } else {
+    drawlefteyeclosed();
+  }
+  
+  if(random(2) >= 1){
+    drawrighteyeopen();
+    
+  } else {
+    drawrighteyeclosed();
+    
+  }
+
+  
   drawear();
   //drawgrid();
   //drawmouth1();
   drawmouth2();
   drawnose();
   draweyebrows();
+  //drawhair();
 }
+
+
 
 void drawgrid(){
   stroke(255,0,0);
@@ -43,9 +60,12 @@ void drawmouth1(){
 }
 
 void drawmouth2(){
-stroke(0);
-  bezier( 275,260, 280, 285  ,  265,  300   , 265, 280);
-  bezier( 265, 280, 264, 320,    250, 285,   255, 280);
+  //float xx = random(262, 267);
+  //float yy = random(277, 283);
+  stroke(0);
+  bezier( 275,260, 285, 285  ,  265,  300   , 265,280);
+  bezier( 265,280, 264, 320,    250, 285,   255, 280);
+  
 }
 
 void drawnose(){
@@ -54,16 +74,51 @@ void drawnose(){
 }
 
 void draweyebrows(){
+  stroke(0);
   bezier( 160, 150, 200, 132, 200, 132, 220, 132);
 line(300, 132, 330, 140);
 }
 
-void draweyes(){
-
-}
-
 void drawear(){
+  stroke(0);
   fill(230,189,160);
   arc(120, 260, 50, 50, QUARTER_PI, PI+QUARTER_PI+QUARTER_PI, OPEN);
 
+}
+
+
+void drawlefteyeopen(){
+  fill(255);
+  ellipse(200,200,80,80);
+  fill(0);
+  ellipse(215,220,4,4);
+ }
+ 
+void drawrighteyeopen(){
+  fill(255);
+  ellipse(325,200,75,80);
+  fill(0);
+  ellipse(345,220,4,4);
+}
+ 
+void drawlefteyeclosed(){
+  fill(230,189,160);
+  ellipse(200,200,80,80);  
+  bezier (160,200, 182, 205, 217, 205,   240,  200);
+}
+
+void drawrighteyeclosed(){
+  fill(230,189,160);
+  ellipse (325,200,75,80);
+  
+  bezier (287  , 200, 311,205, 343,205,   362  ,  200);
+  
+}
+
+void drawhair(){
+println(mouseX, mouseY);
+  fill (157,95,46);
+  bezier (281,90, 289, 85, 281, 51, 266, 51);
+  bezier (266,51, 171, 41, 95, 69, 75, 172);
+  
 }
